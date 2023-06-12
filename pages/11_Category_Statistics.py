@@ -1,6 +1,11 @@
 import streamlit as st
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="Category Statistics",
+    layout="wide"
+)
+
 category_stats_df = read_from_gsheets("Category stats")\
     [["Country", "naics_2", "naics_code", "safegraph_category", "safegraph_subcategory", "industry_title", "total_poi_count"]]\
     .astype({'total_poi_count': int})

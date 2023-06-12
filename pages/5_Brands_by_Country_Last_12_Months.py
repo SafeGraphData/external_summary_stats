@@ -4,6 +4,11 @@ import altair as alt
 from read_data import read_from_gsheets
 from datetime import datetime, timedelta
 
+st.set_page_config(
+    page_title="Brands by Country Last 12 Months",
+    layout="wide"
+)
+
 global_places_df = read_from_gsheets("Global Places")
 global_places_df = global_places_df[["Release month", "Country", "Distinct brands"]]
 

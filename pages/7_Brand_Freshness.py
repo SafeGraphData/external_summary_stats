@@ -2,7 +2,12 @@ import streamlit as st
 import pandas as pd
 from read_data import read_from_gsheets
 
-# first raw df
+st.set_page_config(
+    page_title="Brand Freshness",
+    layout="wide"
+)
+
+# raw df
 brand_freshness_grouped_df = read_from_gsheets("Brand freshness grouped")
 numeric_columns = ['brand_count', 'country_brand_count', 'pct_of_brands', 'tidy_country_rank', 'country_poi_count']
 brand_freshness_grouped_df[numeric_columns] = brand_freshness_grouped_df[numeric_columns].apply(pd.to_numeric)

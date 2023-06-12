@@ -3,6 +3,11 @@ import pandas as pd
 import altair as alt
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="Opening & Closing Brands",
+    layout="wide"
+)
+
 brands_open_close_df = read_from_gsheets("Global Places")
 brands_open_close_df = brands_open_close_df[["Country", "Release month", "Brands with at least 1 new opened POI", "Brands with at least 1 new closed POI"]]
 

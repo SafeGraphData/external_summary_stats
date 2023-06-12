@@ -3,6 +3,11 @@ import pandas as pd
 import altair as alt
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="Brand Freshness Top 30",
+    layout="wide"
+)
+
 brand_freshness_30_df = read_from_gsheets("Brand freshness")[
     ["iso_country_code", "file_age_range", "country_poi_count", "pct_of_brands"]
 ]

@@ -1,6 +1,11 @@
 import streamlit as st
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="POI and Brand Counts",
+    layout="wide"
+)
+
 top_30_df = (
     read_from_gsheets("Countries")
     .assign(**{

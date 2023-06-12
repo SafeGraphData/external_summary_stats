@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="Fill Rates",
+    layout="wide"
+)
+
 columns_to_keep = ["country", "iso_country_code", "placekey", "parent_placekey", "location_name", "safegraph_brand_ids", "brands", "store_id", "naics_code", "top_category", "sub_category", "latitude", "longitude", "street_address", "city", "region", "postal_code", "phone_number", "open_hours", "category_tags", "open_on", "closed_on", "tracking_closed_since", "geometry_type", "Pct with website"]
 columns_to_convert = ["placekey", "parent_placekey", "location_name", "safegraph_brand_ids", "brands", "store_id", "naics_code", "top_category", "sub_category", "latitude", "longitude", "street_address", "city", "region", "postal_code", "phone_number", "open_hours", "category_tags", "open_on", "closed_on", "tracking_closed_since", "geometry_type", "Pct with website"]
 fill_rates_df = read_from_gsheets("Countries")[columns_to_keep]

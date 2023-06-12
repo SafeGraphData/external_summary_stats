@@ -1,6 +1,11 @@
 import streamlit as st
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="Latest Release",
+    layout="wide"
+)
+
 latest_release_df = (
     read_from_gsheets("Global Places")
     [["Country", "Total POI with Parking Lots", "Distinct brands", "Branded POI", "Total POI"]]

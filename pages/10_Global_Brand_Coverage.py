@@ -1,6 +1,11 @@
 import streamlit as st
 from read_data import read_from_gsheets
 
+st.set_page_config(
+    page_title="Global Brand Coverage",
+    layout="wide"
+)
+
 top_1000_brands_df = (
     read_from_gsheets("Top 1000 brands")
     [["primary_brand", "naics_code", "safegraph_category", "country_code_list", "country_name_list"]]
