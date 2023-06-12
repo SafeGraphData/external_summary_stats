@@ -41,4 +41,4 @@ joined_df_styled = (
     })
 )
 
-st.dataframe(joined_df_styled)
+st.dataframe(joined_df_styled, use_container_width=True)
