@@ -2,8 +2,8 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Summary Statistics",
-    page_icon="👋",
-    layout="wide"
+    page_icon="👋"
+    #layout="wide"
 )
 
 st.write("# SafeGraph Summary Statistics 👋")
