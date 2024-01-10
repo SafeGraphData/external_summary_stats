@@ -474,4 +474,16 @@ st.dataframe(fill_rates_df_styled)
 
 st.write("Visualize Global Coverage")
 components.iframe("https://safegraph-data-admin.carto.com/builder/02a6ced1-4007-4659-af23-44e4eb89a436/embed", height = 600)
+tier_text = ''' 
+**Tier Definitions:**
+
+`Tier 1`: These countries have seen significant investment, have gone through rigorous QA, and have naturally improved though customer feedback and time spent in market.
+
+`Tier 2`: These countries are nearly "full scope" (coverage across all consumer oriented POIs with additional coverage in non-consumer categories). We have recently invested here and are working swiftly to close the outstanding gap and improve data quality.
+
+`Tier 3`: We have made some investments in this country (mostly brands and select non-branded categories), but this country has not been a strong focus. We are willing to quickly turn this into a strong focus and have a critical mass starting point across consumer focused POIs.
+
+`Tier 4`: We have some POIs here (mostly brands), but nothing super deep nor meaningful.
+'''
+st.markdown(tier_text)
 
