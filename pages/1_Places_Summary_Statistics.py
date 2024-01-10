@@ -136,7 +136,7 @@ last_12_months = alt.Chart(last_12_months_df).mark_bar().encode(
 st.altair_chart(last_12_months)
 
 #### Brands By Country Last 12 months ####
-#global_places_df = read_from_gsheets("Global Places")
+global_places_df = read_from_gsheets("Global Places")
 global_places_df = global_places_df[["Release month", "Country", "Distinct brands"]]
 
 for i, value in enumerate(global_places_df['Release month']):
@@ -181,7 +181,7 @@ brands_by_country = alt.Chart(brands_by_country_df).mark_bar().encode(
 st.altair_chart(brands_by_country)
 
 #### Overall Brands Last 12 Months ####
-#global_places_df = read_from_gsheets("Global Places")
+global_places_df = read_from_gsheets("Global Places")
 global_places_df = global_places_df[["Release month", "Country", "Distinct brands"]]
 
 for i, value in enumerate(global_places_df['Release month']):
