@@ -2,6 +2,7 @@ import streamlit as st
 from read_data import read_from_gsheets
 import altair as alt
 from datetime import datetime, timedelta
+import pandas as pd
 
 st.set_page_config(
     page_title="Places Summary Statistics",
@@ -90,7 +91,7 @@ st.write("POI and Brand Counts - Top 30 Countries outside the US")
 st.dataframe(top_30_df_styled, use_container_width=True)
 
 #### Last 12 Months ####
-#global_places_df = read_from_gsheets("Global Places")
+global_places_df = read_from_gsheets("Global Places")
 global_places_df = global_places_df[["Release month", "Country", "Total POI"]]
 
 for i, value in enumerate(global_places_df['Release month']):
