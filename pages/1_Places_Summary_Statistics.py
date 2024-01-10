@@ -3,6 +3,9 @@ from read_data import read_from_gsheets
 import altair as alt
 from datetime import datetime, timedelta
 import pandas as pd
+import streamlit.components.v1 as components
+
+
 
 st.set_page_config(
     page_title="Places Summary Statistics",
@@ -466,4 +469,9 @@ fill_rates_df_styled = fill_rates_df.style.apply(lambda x: ['background-color: #
 
 st.write("Fill Rates")
 st.dataframe(fill_rates_df_styled)
+
+#### Carto Map ###
+
+st.write("Visualize Global Coverage")
+components.iframe("https://safegraph-data-admin.carto.com/builder/02a6ced1-4007-4659-af23-44e4eb89a436/embed", height = 600)
 
