@@ -134,7 +134,7 @@ global_df['Overall Polygon Coverage'] = (global_df['POI with polygon count'] /gl
 
 global_df_styled = global_df.drop(["Total POI"], axis=1).style.apply(lambda x: ['background-color: #D7E8ED' if i % 2 == 0 else '' for i in range(len(x))], axis=0)\
     .format({"POI with polygon count": "{:,}",
-              "Overall Polygon Coverage": "{:,.0f}"})
+              "Overall Polygon Coverage": "{:.01f}%"})
 
 countries = ['US', 'UK', 'CA']
 dfs = []
@@ -150,7 +150,7 @@ for country in countries:
     )
 
     df['POI with Polygon Count'] = df['POI with Polygon Count'].astype(int).apply(lambda x: "{:,}".format(x))
-    df['Polygon coverage'] = df['Polygon coverage'].astype(float).apply(lambda x: "{:,.0f}".format(x))
+    df['Polygon coverage'] = df['Polygon coverage'].astype(float).apply(lambda x: "{:.01f}%".format(x))
     dfs.append(df)
 
 styled_dfs = [
