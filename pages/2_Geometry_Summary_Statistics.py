@@ -145,7 +145,9 @@ for country in countries:
         [["naics_code", "safegraph_category", "safegraph_subcategory", "poi_with_polygon_count", "Polygon coverage"]]
         .rename(columns={"naics_code": "NAICS Code", "safegraph_category": "SafeGraph Category",\
                          "safegraph_subcategory": "SafeGraph Subcategory", "poi_with_polygon_count": "POI with Polygon Count"})
-        .sort_values('POI with Polygon Count', ascending=False)
+        .assign(**{
+            "Polygon coverage": lambda df: ((df["Polygon coverage"].str.replace(",", "").astype(float)) * 100).astype(float)
+    }).sort_values('POI with Polygon Count', ascending=False)
         .reset_index(drop=True)
     )
 
