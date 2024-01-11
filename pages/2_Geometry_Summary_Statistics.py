@@ -30,7 +30,9 @@ latest_release_df_styled = (
     .apply(lambda x: ['background-color: #D7E8ED' if i%2==0 else '' for i in range(len(x))], axis=0)
     .format({
         "Total POI with Parking Lots": "{:,.0f}",
-        "Polygon coverage": "{:.1f}%"
+        "POI with polygons": "{:,.0f}",
+        "Point-only POI": "{:,.0f}",
+        "Polygon coverage": "{:.01f}%"
     })
 )
 
