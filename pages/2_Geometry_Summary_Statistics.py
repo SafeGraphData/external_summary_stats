@@ -19,7 +19,7 @@ latest_release_df = (
             "Total POI with Parking Lots": lambda df: df["Total POI with Parking Lots"].str.replace(",", "").astype(float),
             "POI with polygons": lambda df: df["POI with polygons"].str.replace(",", "").astype(int),
             "Point-only POI": lambda df: df["Point-only POI"].str.replace(",", "").astype(int),
-            "Polygon coverage": lambda df: (df["Polygon coverage"].str.replace(",", "").astype(float)) * 100
+            "Polygon coverage": lambda df: ((df["Polygon coverage"].str.replace(",", "").astype(float)) * 100).astype(float)
         }
     )
     .reset_index(drop=True)
