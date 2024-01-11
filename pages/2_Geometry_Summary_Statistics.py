@@ -132,9 +132,9 @@ global_df = category_stats_df.groupby(['naics_2', 'industry_title'])\
     .rename(columns={"naics_2": "2-digit NAICS", "industry_title": "Industry Title", "total_poi_count": "Total POI", "poi_with_polygon_count":"POI with polygon count"})
 global_df['Overall Polygon Coverage'] = (global_df['POI with polygon count'] /global_df['Total POI']) * 100
 
-global_df_styled = global_df.style.apply(lambda x: ['background-color: #D7E8ED' if i % 2 == 0 else '' for i in range(len(x))], axis=0)\
+global_df_styled = global_df.drop(["Total POI"], axis=1).style.apply(lambda x: ['background-color: #D7E8ED' if i % 2 == 0 else '' for i in range(len(x))], axis=0)\
     .format({"POI with polygon count": "{:,}",
-              "Overall Polygon Coverage": "{:,.0f}"}).drop(["Total POI"], axis=1)
+              "Overall Polygon Coverage": "{:,.0f}"})
 
 countries = ['US', 'UK', 'CA']
 dfs = []
