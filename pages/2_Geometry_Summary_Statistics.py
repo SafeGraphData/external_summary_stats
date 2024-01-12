@@ -180,6 +180,7 @@ state_df = read_from_gsheets("Parking - regions").assign(**{
     }).rename(columns={"%_poi_with_parking": "% of POI with Parking Lot"})
 
 state_df['% of POI with Parking Lot'] = [round(x,1) for x in state_df['% of POI with Parking Lot']]
+state_df['total_parking_poi'] = state_df['total_parking_poi'].map('{:,.0f}'.format)
 
 # Create the plot with USA scope, gray background, and tooltips
 fig = px.choropleth(state_df,
