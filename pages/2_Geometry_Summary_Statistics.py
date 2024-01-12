@@ -201,7 +201,7 @@ fig.update_layout(
 )
 
 # Add tooltips with state information
-fig.update_traces(hovertemplate='<b>%{hovertext}</b><br>% POI with Parking: %{z}%<br>Total Parking POI: %{text}<extra></extra>',
+fig.update_traces(hovertemplate='State:  <b>%{hovertext}</b><br>% POI with Parking: %{z}%<br>Total Parking POI: %{text}<extra></extra>',
                   text=state_df['total_parking_poi'])
 
 fig.update_layout(
