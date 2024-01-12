@@ -212,6 +212,6 @@ fig.update_layout(
         len=0.5  # Adjust the length of the legend bar
     )
 )
-
+fig.update_layout(height=800, width=1400) ## Update map size 
 st.write('See the map below, where states are shaded based on the percentage of POI that have an associated parking lot POI')
 st.plotly_chart(fig, use_container_width=True)
