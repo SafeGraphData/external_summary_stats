@@ -4,6 +4,7 @@ import altair as alt
 from datetime import datetime, timedelta
 import pandas as pd
 import streamlit.components.v1 as components
+import plotly.express as px
 
 st.set_page_config(
     page_title="Geometry Summary Statistics",
@@ -170,3 +171,47 @@ for i, tab in enumerate(tabs[1:]):
         if i < len(styled_dfs):
             # st.write(f"{countries[i]} POI Count")
             st.dataframe(styled_dfs[i], use_container_width=True)
+
+####Parking coverage by region ####
+
+state_df = = read_from_gsheets("Parking - regions").assign(**{
+        "total_parking_poi": lambda df: df["total_parking_poi"].astype(int),
+        "%_poi_with_parking": lambda df: ((df["pct_poi_with_parking"].astype(float)) * 100).astype(float)
+    })
+
+state_df['%_poi_with_parking'] = [round(x,1) for x in state_df['%_poi_with_parking']]
+
+# Create the plot with USA scope, gray background, and tooltips
+fig = px.choropleth(state_df,
+                    locations='state',
+                    color='%_poi_with_parking',
+                    hover_name='state',
+                    locationmode='USA-states',  # Use predefined US state boundaries
+                    scope='usa',  # Set the scope to 'usa'
+                    title='Parking Coverage by Region',
+                     color_continuous_scale=px.colors.diverging.RdYlGn,  # Reverse Reds color scale
+                    range_color=[40, 80],  # Specify the range for the color scale
+                    )
+
+# Customize the background color
+fig.update_layout(
+    geo=dict(
+        bgcolor='lightgray',  # Set the background color
+    )
+)
+
+# Add tooltips with state information
+fig.update_traces(hovertemplate='<b>%{hovertext}</b><br>% POI with Parking: %{z}%<br>Total Parking POI: %{text}<extra></extra>',
+                  text=state_df['total_parking_poi'])
+
+fig.update_layout(
+    coloraxis_colorbar=dict(
+        title='Percent Coverage',
+        xanchor='center',
+        x=0,
+        len=0.5  # Adjust the length of the legend bar
+    )
+)
+
+st.write('See the map below, where states are shaded based on the percentage of POI that have an associated parking lot POI')
+st.plotly_chart(fig, use_container_width=True)
