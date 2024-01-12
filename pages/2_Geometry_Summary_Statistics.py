@@ -258,12 +258,11 @@ st.dataframe(styled_df, use_container_width=True)
 
 
 brand_stats_parking_df = read_from_gsheets('Parking - brands')\
-    [["primary_brand","naics_code", "safegraph_category", "safegraph_subcategory", "pct_poi_with_parking"]]\
+    [["primary_brand","naics_code", "safegraph_category", "safegraph_subcategory", "pct_poi_with_parking", 'total_open_poi_count']]\
     .astype({'naics_code': str})
 
 
-## Bug in backend table - temp fix while I investigate
-brand_stats_parking_df = brand_stats_parking_df[brand_stats_parking_df['primary_brand']!='Quick Lane']
+brand_stats_parking_df = brand_stats_parking_df[brand_stats_parking_df['total_open_poi_count']>=100].drop(['total_open_poi_count'], axis=1)
 
 
 brand_stats_parking_df['pct_poi_with_parking'] = [0 if (pd.isna(x)) or (x=="NaN") else float(x) for x in brand_stats_parking_df['pct_poi_with_parking'] ]
