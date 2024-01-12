@@ -205,11 +205,12 @@ fig.update_traces(hovertemplate='<b>%{hovertext}</b><br>% POI with Parking: %{z}
                   text=state_df['total_parking_poi'])
 
 fig.update_layout(
-    coloraxis_colorbar=dict(
-        title='Percent Coverage',
-        xanchor='center',
-        x=0,
-        len=0.5  # Adjust the length of the legend bar
+    legend=dict(
+        orientation='h',  # Set the orientation to horizontal
+        x=0,  # Set the x position
+        y=1.02,  # Set the y position
+        xanchor='left',  # Set the x anchor to left
+        yanchor='bottom'  # Set the y anchor to bottom
     )
 )
 fig.update_layout(height=800, width=1400) ## Update map size 
