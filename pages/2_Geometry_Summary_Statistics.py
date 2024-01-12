@@ -258,8 +258,12 @@ st.dataframe(styled_df, use_container_width=True)
 
 
 brand_stats_parking_df = read_from_gsheets('Parking - brands')\
-    [["naics_code", "safegraph_category", "safegraph_subcategory", "pct_poi_with_parking"]]\
+    [["primary_brand","naics_code", "safegraph_category", "safegraph_subcategory", "pct_poi_with_parking"]]\
     .astype({'naics_code': str})
+
+
+## Bug in backend table - temp fix while I investigate
+brand_stats_parking_df = brand_stats_parking_df[brand_stats_parking_df['primary_brand']!='Quick Lane']
 
 
 brand_stats_parking_df['pct_poi_with_parking'] = [0 if (pd.isna(x)) or (x=="NaN") else float(x) for x in brand_stats_parking_df['pct_poi_with_parking'] ]
@@ -267,9 +271,10 @@ brand_stats_parking_df['naics_code'] = [x.split(".")[0] for x in brand_stats_par
 
 
 parking_brand_df = (
-    category_stats_parking_df
+    brand_stats_parking_df
     .rename(columns={"naics_code": "NAICS Code", "safegraph_category": "SafeGraph Category",\
-                        "safegraph_subcategory": "SafeGraph Subcategory",  "pct_poi_with_parking":"Pct POI With Parking" })
+                        "safegraph_subcategory": "SafeGraph Subcategory",  "pct_poi_with_parking":"Pct POI With Parking",\
+                              "primary_brand":"Brand Name" })
     .assign(**{
         "Pct POI With Parking": lambda df: ((df["Pct POI With Parking"]) * 100).astype(float)
 }).sort_values('Pct POI With Parking', ascending=False)
@@ -286,5 +291,4 @@ styled_brand_df = (
 
 st.write("Parking Coverage by Brand")
 st.dataframe(styled_brand_df, use_container_width=True)
-
 
