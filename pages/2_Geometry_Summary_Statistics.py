@@ -174,7 +174,7 @@ for i, tab in enumerate(tabs[1:]):
 
 ####Parking coverage by region ####
 
-state_df = = read_from_gsheets("Parking - regions").assign(**{
+state_df = read_from_gsheets("Parking - regions").assign(**{
         "total_parking_poi": lambda df: df["total_parking_poi"].astype(int),
         "%_poi_with_parking": lambda df: ((df["pct_poi_with_parking"].astype(float)) * 100).astype(float)
     })
