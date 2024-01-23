@@ -306,7 +306,7 @@ y_range = [0, 100]
 
 brand_freshness_30 = alt.Chart(brand_freshness_30_df).mark_bar().encode(
     x=alt.X('Country Code', sort=None, title=None),
-    y=alt.Y('Percent of Brands', scale=alt.Scale(domain=y_range), sort='-y'),
+    y=alt.Y('Percent of Brands', scale=alt.Scale(domain=y_range), sort='y'),
     color=alt.Color('File Age Range', scale=alt.Scale(domain=['0-30d','31-60d','61-90d','91-120d','120d+']))
 ).properties(
     width=800,
