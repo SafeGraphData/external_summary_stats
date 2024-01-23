@@ -303,7 +303,9 @@ brand_freshness_30_df.rename(
 # st.dataframe(brand_freshness_30_df)
 
 y_range = [0, 100]
-sorted_df = brand_freshness_30_df.sort_values(by=['File Age Range'], ascending=False)
+file_age_order = ['120d+', '91-120d', '61-90d', '31-60d', '0-30d']
+sorted_df = brand_freshness_30_df.sort_values(by='File Age Range', key=lambda x: x.map({file_age: i for i, file_age in enumerate(file_age_order)}))
+
 brand_freshness_30 = alt.Chart(sorted_df).mark_bar().encode(
     x=alt.X('Country Code', sort=None, title=None),
     y=alt.Y('Percent of Brands', scale=alt.Scale(domain=y_range), sort='y'),
